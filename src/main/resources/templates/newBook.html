@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Lisää kirja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <form action="#" th:object="${book}" th:action="@{saveNewBook}" method="post">
+      <div>
+        <label>Kirjailija </label>
+        <input type="text" th:field="*{author}" />
+      </div>
+      <div>
+        <label>Kirjan nimi</label>
+        <input type="text" th:field="*{title}" />
+      </div>
+
+      <div>
+        <label>Julkaisuvuosi</label>
+        <input type="text" th:field="*{publicationYear}" />
+      </div>
+      <input type="submit" value="Save"></input>
+    </form>
+  </body>
+</html>
