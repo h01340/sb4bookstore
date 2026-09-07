@@ -10,12 +10,16 @@
         <th>Kirjan nimi</th>
         <th>Kirjailija</th>
       </tr>
-      <tr th:each="book : ${books}">
+      <tr th:each="book : ${kirjat}">
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
+
+        <td><a th:href="@{/editBook/{id}(id=${book.id})}">Muokkaa</a></td>
+        <td><a th:href="@{/deleteBook/{id}(id=${book.id})}">Poista</a></td>
       </tr>
     </table>
     <a href="index">Pääsivulle</a>
     <a href="newBook">Lisää uusi kirja</a>
+    <a href="newBookWithValidation">Lisää uusi kirja VALIDOINNILLA</a>
   </body>
 </html>

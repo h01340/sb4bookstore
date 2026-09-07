@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Muokkaa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>Päivitä kirjan tiedot</h1>
+    <form action="#" th:object="${editBook}" th:action="@{/saveBook}" method="post">
+		<!-- <input type="hidden" id="id" th:field="*{id}" /> -->
+			<input type="text" id="id" th:field="*{id}" readonly/>
+			
+			<div>
+		  		<label>Kirjailija</label>
+		  		<input type="text" th:field="*{author}" />
+			</div>
+            <div>
+		  		<label>Kirjan nimi</label>
+	  			<input type="text" th:field="*{title}" />
+  			</div>
+
+
+      <div>
+		  		<label>Julkaisuvuosi</label>
+		  		<input type="text" th:field="*{publicationYear}" />
+			</div>
+			
+			<input type="submit" value="Save"></input>
+		</form>
+    <a href="/books">Back to main page</a>
+  </body>
+</html>

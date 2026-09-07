@@ -1,21 +1,23 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Lisää kirja</title>
+    <title>Lisää kirja VALIDOINTI</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
-    <form action="#" th:object="${book}" th:action="@{saveBook}" method="post">
-      <div>
-        <label>Kirjailija </label>
-        <input type="text" th:field="*{author}" />
-      </div>
+    <form action="#" th:object="${kirja}" th:action="@{/saveAndValidateBook}" method="post">
+
+		<!-- <input type="hidden" id="id" th:field="*{id}" /> -->
+		
+			<div>
+		  		<label>Kirjailija</label>
+		  		<input type="text" th:field="*{author}" />
+			</div>
       <div>
         <label>Kirjan nimi</label>
         <input type="text" th:field="*{title}" />
-       
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</span>
       </div>
-
       <div>
         <label>Julkaisuvuosi</label>
         <input type="text" th:field="*{publicationYear}" />
@@ -24,3 +26,6 @@
     </form>
   </body>
 </html>
+
+<!---->
+<!-- -->

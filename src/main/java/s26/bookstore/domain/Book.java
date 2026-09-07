@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -13,9 +14,9 @@ public class Book {
 
     // long: oletusarvona on aina nolla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Size(min = 5, max = 30)
     private String title;
     private String author;
     private double publicationYear;
