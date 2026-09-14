@@ -19,7 +19,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 5, max = 30, message = "Tarkista pituus")
+    @Size(min = 5, max = 30, message = "Tarkista pituus, se pitää olla min 5 ja max 30")
     private String title;
 
     private String author;
