@@ -13,12 +13,18 @@
       <div>
         <label>Kirjan nimi</label>
         <input type="text" th:field="*{title}" />
-       
       </div>
-
       <div>
         <label>Julkaisuvuosi</label>
         <input type="text" th:field="*{publicationYear}" />
+      </div>
+      <div>
+
+        <label>Kategoria</label>
+			  <select th:field="*{category}">
+       			<option th:each="category: ${categories}" 
+            th:value="${category.id}" th:text="${category.name}"></option>
+    		</select>
       </div>
       <input type="submit" value="Save"></input>
     </form>

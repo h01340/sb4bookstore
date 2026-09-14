@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 import s26.bookstore.domain.Book;
 import s26.bookstore.domain.BookRepository;
+import s26.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookstoreController {
@@ -20,9 +21,12 @@ public class BookstoreController {
 
     // https://docs.spring.io/spring-boot/reference/using/spring-beans-and-dependency-injection.html
     private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
 
-    public BookstoreController(BookRepository bookRepository) {
+    public BookstoreController(BookRepository bookRepository,
+            CategoryRepository categoryRepository) {
         this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
 
     }
 
@@ -44,6 +48,7 @@ public class BookstoreController {
     public String openAddBookForm(Model model) {
         log.info("Uuden kirjan tekoa...");
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "newBook";
     }
 
@@ -68,6 +73,7 @@ public class BookstoreController {
     public String editBook(@PathVariable Long id, Model model) {
         log.info("Edit book which id = " + id);
         model.addAttribute("editBook", bookRepository.findById(id));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editBook";
     }
 

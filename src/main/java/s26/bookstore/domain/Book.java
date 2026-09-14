@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -16,12 +18,19 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 5, max = 30)
+
+    @Size(min = 5, max = 30, message = "Tarkista pituus")
     private String title;
+
     private String author;
     private double publicationYear;
     private String isbn;
     private double price;
+
+    // Many books in the one category
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Category category;
 
     public Book() {
     }
@@ -33,6 +42,12 @@ public class Book {
     public Book(String author, String title) {
         this.author = author;
         this.title = title;
+    }
+
+    public Book(@Size(min = 5, max = 30, message = "Tarkista pituus") String title, String author, Category category) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
     }
 
     public Long getId() {
@@ -83,10 +98,27 @@ public class Book {
         this.price = price;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                + ", isbn=" + isbn + ", price=" + price + "]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Book{");
+        sb.append("id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", author=").append(author);
+        sb.append(", publicationYear=").append(publicationYear);
+        sb.append(", isbn=").append(isbn);
+        sb.append(", price=").append(price);
+        sb.append(", category=").append(category);
+        sb.append('}');
+        return sb.toString();
     }
 
 }
